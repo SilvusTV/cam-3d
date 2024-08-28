@@ -1,0 +1,15 @@
+{
+  "name": "cam-3d",
+  "version": "1.0.0",
+  "description": "3d camera perspective for OBS in real time ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Silvus_tv",
+  "license": "ISC",
+  "dependencies": {
+    "obs-websocket-js": "^5.0.6",
+    "typescript": "^5.5.4"
+  }
+}

@@ -1,0 +1,90 @@
+/*BACKUP IDEA https://coolors.co/2a2d34-ef476f-ffd166-06d6a0-fcfcfc */
+:root{
+    --bakcground-color-twitch: #18181b;
+    --bakcground-color-empty: #1d1f26;
+    --bakcground-color: #272a33;
+    --bakcground-color-header: #3c404d;
+    --border-color: #3c404d;
+    --font-color-disable: #9a9996;
+    --font-color: #fefefe;
+    --font-color-disable-light: #d5d7de;
+    --primary-color: #284cb8;
+    --primary-color-light: #476bd7;
+    --green-color: #37d247;
+    --green-color-dark: #17641e;
+    --ornage-color: #e5af24;
+    --ornage-color-dark: #6e520d;
+    --red-color: #e23b57;
+    --red-color-dark: #7d1224;
+
+    ////Size////
+    --16px: 1rem;
+    --18px: 1.125rem;
+    --20px: 1.25rem;
+    --24px: 1.5rem;
+    --32px: 2rem;
+    --48px: 3rem;
+    --64px: 4rem;
+    --96px: 6rem;
+    --128px: 8rem;
+}
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html, body{
+    font-family: Arial, sans-serif;
+    background: var(--bakcground-color);
+    color: var(--font-color);
+}
+#login{
+    display: flex;
+    flex-direction: column;
+    gap: var(--32px);
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    & h1{
+        font-size: var(--48px);
+    }
+    & form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: var(--bakcground-color-empty);
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        & h1{
+            font-size: var(--24px);
+            margin-bottom: 20px;
+        }
+        & input{
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            background: var(--bakcground-color);
+            color: var(--font-color);
+            border-bottom: 2px solid var(--primary-color);
+            &:focus{
+                outline: none;
+                border-bottom: 2px solid var(--primary-color-light);
+            }
+        }
+        & button{
+            padding: 10px;
+            border: none;
+            background: var(--primary-color);
+            color: var(--font-color);
+            cursor: pointer;
+            &:hover{
+                background: var(--primary-color-light);
+            }
+        }
+    }
+}
+#configuration{
+    display:none;
+}
