@@ -1,18 +1,8 @@
-import OBSWebSocket from 'obs-websocket-js'
+import OBSWebSocket from "obs-websocket-js";
 
-export const obs = new OBSWebSocket()
-
-export async function sendCommand (command, params?) {
-  try {
-    // if (command.indexOf('Set') === 0)
-    //  console.log('Sending command:', command, 'with params:', params)
-    return await obs.call(command, params || {})
-  } catch (e) {
-    console.log('Error sending command', command, ' - error is:', e.message)
-    return {}
-  }
+export async function getObs(address: string, password: string) {
+  const obs = new OBSWebSocket();
+  await obs.disconnect()
+  await obs.connect(address, password)
+  return obs;
 }
-
-obs.on("ConnectionError", err => {
-  console.error('Socket error:', err)
-})

@@ -9,7 +9,7 @@
   "author": "Silvus_tv",
   "license": "ISC",
   "dependencies": {
-    "obs-websocket-js": "^5.0.6",
-    "typescript": "^5.5.4"
+    "obs-websocket-js": "5.0.6",
+    "typescript": "5.5.4"
   }
 }

@@ -1,38 +1,43 @@
-import {obs, sendCommand} from "./obs";
+import {getObs} from "./obs";
+import OBSWebSocket from "obs-websocket-js";
 
-let heartbeat = {}
-let errorMessage = ''
-let heartbeatInterval = setInterval(async () => {
-  const stats = await sendCommand('GetStats')
-  const streaming = await sendCommand('GetStreamStatus')
-  const recording = await sendCommand('GetRecordStatus')
-  heartbeat = {stats, streaming, recording}
-  // console.log(heartbeat);
-}, 1000) // Heartbeat
+
+let connected = false
+function setConnected(value: boolean) {
+  connected = value
+}
+let obs: any
+function setObs(value: OBSWebSocket) {
+  obs = value
+}
+let errorMessage : string
+function setErrorMessage (value: string)  {
+  errorMessage = value
+}
 async function connect() {
   const password = document.getElementById('password').innerHTML
-  const address = 'ws://localhost:4455'
+  const address = document.getElementById('password').innerHTML
   console.log('Connecting to:', address, '- using password:', password)
   await disconnect()
   try {
-    const {obsWebSocketVersion, negotiatedRpcVersion} = await obs.connect(
-      address,
-      password
-    )
+    async function connect() {
+      setObs(await getObs(address, password))
+      setConnected(true);
+      console.log(obs)
+    }
     console.log(
-      `Connected to obs-websocket version ${obsWebSocketVersion} (using RPC ${negotiatedRpcVersion})`
+      `Connected to obs-websocket version ${obs.obsWebSocketVersion} (using RPC ${obs.negotiatedRpcVersion})`
     )
   } catch (e) {
     console.log(e)
-    errorMessage = e.message
+    setErrorMessage(e.message)
     console.log('Error connecting to OBS:', errorMessage)
   }
 }
 
 async function disconnect() {
   await obs.disconnect()
-  clearInterval(heartbeatInterval)
-  errorMessage = 'Disconnected'
+  setErrorMessage('Disconnected')
 }
 
 var connectButton: HTMLElement
